@@ -38,23 +38,45 @@ def show_froyo_results():
 @app.route('/favorites')
 def favorites():
     """Shows the user a form to choose their favorite color, animal, and city."""
-    pass
+    return """
+    <form action="/favorites_results" method="GET">
+        Favorite color?
+        <input type="text" name="color"><br/>
+        Favorite animal?
+        <input type="text" name="animal"><br/>
+        Favorite city?
+        <input type="text" name="city"><br/>
+        <input type="submit" value="Submit!">
+    </form>
+    """
 
 @app.route('/favorites_results')
 def favorites_results():
     """Shows the user a nice message using their form results."""
-    pass
+    favorite_color = request.args.get('color')
+    favorite_animal = request.args.get('animal')
+    favorite_city = request.args.get('city')
+    return f'Wow, I didn\'t know {favorite_color} {favorite_animal} lived in {favorite_city}!' 
+
 
 @app.route('/secret_message')
 def secret_message():
     """Shows the user a form to collect a secret message. Sends the result via
     the POST method to keep it a secret!"""
-    pass
+    return """
+    <form action="/message_results" method="POST">
+        Enter your secret message:
+        <input type="text" name="message"><br/>
+        <input type="submit" value="submit">
+    </form> 
+    """
 
 @app.route('/message_results', methods=['POST'])
 def message_results():
     """Shows the user their message, with the letters in sorted order."""
-    pass
+    user_message = request.form.get('message')
+    sorted_message = sort_letters(user_message)
+    return f' Here\'s your secret message! <br/> {sorted_message}'
 
 @app.route('/calculator')
 def calculator():
@@ -77,7 +99,8 @@ def calculator():
 @app.route('/calculator_results')
 def calculator_results():
     """Shows the user the result of their calculation."""
-    pass
+    operand3 = int(operand1) {operation} int(operand2)
+    return f"You chose to {option} {operand1} and {operand2}. Your result is {operand3}"
 
 
 # List of compliments to be used in the `compliments_results` route (feel free 
