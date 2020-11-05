@@ -99,9 +99,17 @@ def calculator():
 @app.route('/calculator_results')
 def calculator_results():
     """Shows the user the result of their calculation."""
-    operand3 = int(operand1) {operation} int(operand2)
-    return f"You chose to {option} {operand1} and {operand2}. Your result is {operand3}"
+    select = request.args.get('operation')
 
+    if select == "add":
+        return f"You chose to {select} int({operand1}) and int({operand2}). Your result is int({operand1}) + int({operand2})"
+    elif select == "subtract "
+        return f"You chose to {select} int({operand1}) and int({operand2}). Your result is int({operand1}) - int({operand2})"
+
+
+
+    
+ 
 
 # List of compliments to be used in the `compliments_results` route (feel free 
 # to add your own!) 
