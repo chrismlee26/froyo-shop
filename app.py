@@ -100,13 +100,27 @@ def calculator():
 def calculator_results():
     """Shows the user the result of their calculation."""
     select = request.args.get('operation')
+    num_one = int(request.args.get('operand1'))
+    num_two = int(request.args.get('operand2'))
+    answer = 0
 
     if select == "add":
-        return f"You chose to {select} int({operand1}) and int({operand2}). Your result is int({operand1}) + int({operand2})"
-    elif select == "subtract "
-        return f"You chose to {select} int({operand1}) and int({operand2}). Your result is int({operand1}) - int({operand2})"
+        answer == (num_one + num_two)
+    elif select == "subtract":
+        answer == (num_one - num_two)
+    elif select == "multiply":
+        answer == (num_one * num_two)
+    else: 
+        answer == (num_one / num_two)
+    return answer
 
-
+    context = { 'operation' : operation,
+                'num_one' : num_one,
+                'num_two' : num_two,
+                'answer' : answer
+            }
+    
+    return render_template('calculator_results.html', **context)
 
     
  
