@@ -99,30 +99,31 @@ def calculator():
 @app.route('/calculator_results')
 def calculator_results():
     """Shows the user the result of their calculation."""
-    select = request.args.get('operation')
+    
     num_one = int(request.args.get('operand1'))
     num_two = int(request.args.get('operand2'))
-    answer = 0
+    operation = request.args.get('operation')
 
-    if select == "add":
-        answer == (num_one + num_two)
-    elif select == "subtract":
-        answer == (num_one - num_two)
-    elif select == "multiply":
-        answer == (num_one * num_two)
-    else: 
-        answer == (num_one / num_two)
-    return answer
+    result = 0
 
-    context = { 'operation' : operation,
-                'num_one' : num_one,
-                'num_two' : num_two,
-                'answer' : answer
-            }
+    if operation == "add":
+        result = (num_one + num_two)
+    elif operation == "subtract":
+        result = (num_one - num_two)
+    elif operation == "multiply":
+        result = (num_one * num_two)
+    elif operation == "divide":
+        result = (num_one / num_two)
+
+    context = { 
+        'operation' : operation,
+        'num_one' : num_one,
+        'num_two' : num_two,
+        'result' : result
+    }
     
     return render_template('calculator_results.html', **context)
 
-    
  
 
 # List of compliments to be used in the `compliments_results` route (feel free 
